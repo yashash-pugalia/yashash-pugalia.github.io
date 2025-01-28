@@ -1,12 +1,16 @@
 <script lang="ts">
   import Marquee from "svelte-fast-marquee";
 
-  export let data: {
+  interface Props {
+    data: {
     name: string;
     role: string;
     quote: string;
     link?: string;
   }[];
+  }
+
+  let { data }: Props = $props();
 </script>
 
 <Marquee gap="1rem" pauseOnHover={true}>
@@ -14,7 +18,7 @@
     <blockquote
       class="relative my-0 flex h-full w-[83cqw] flex-none flex-col rounded bg-neutral-100 dark:bg-neutral-800"
     >
-      <!-- svelte-ignore a11y-missing-content -->
+      <!-- svelte-ignore a11y_missing_content -->
       {#if t.link}
         <a
           href={t.link}

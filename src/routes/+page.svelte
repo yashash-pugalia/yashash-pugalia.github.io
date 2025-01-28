@@ -139,8 +139,8 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   ];
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 
 <main
   class="prose prose-sm prose-neutral mx-auto max-w-screen-md p-8 dark:prose-invert"
@@ -214,7 +214,7 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
           target="_blank"
           class="project-image [--mousePos:0]"
           style:--previewImage="url('{p.previewImage}')"
-          on:mousemove={(e) => {
+          onmousemove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             e.currentTarget.style.setProperty("--mousePos", `${x}px`);
@@ -273,22 +273,27 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   .custom-hover-effect:hover::before {
     @apply opacity-100;
   } -->
+
+<!-- TODO: move this elsewhere given the :global changes -->
+<!-- https://svelte.dev/docs/svelte/v5-migration-guide#Other-breaking-changes-:is()-and-:where()-are-scoped -->
 <style lang="postcss">
-  .project-image {
+  .project-image :global {
     @apply relative;
   }
-  .project-image::after {
+  .project-image::after :global {
     @apply pointer-events-none absolute left-1/2 z-[1] h-40 w-[272px] -translate-y-full translate-x-[calc(-50%+var(--mousePos))] scale-50 rounded border-8 border-neutral-100 bg-contain bg-no-repeat opacity-0 transition-all duration-100 [background-image:var(--previewImage)] [content:''] dark:border-neutral-800;
   }
-  .project-image:hover::after {
+  .project-image:hover::after :global {
     @apply -translate-y-[calc(100%+1.5rem)] scale-100 opacity-100;
   }
 
-  .btn {
+  .btn :global {
     @apply flex h-8 items-center justify-center gap-1 rounded border border-neutral-200 px-2 no-underline transition dark:border-neutral-700;
   }
-  .btn-active,
-  .btn:hover {
+  .btn-active :global {
+    @apply bg-neutral-100 dark:bg-neutral-800;
+  }
+  .btn:hover :global {
     @apply bg-neutral-100 dark:bg-neutral-800;
   }
 </style>
