@@ -1,12 +1,12 @@
 <script lang="ts">
+  import "iconify-icon";
+  import { onMount } from "svelte";
   import SvelteMarkdown from "svelte-markdown";
   import { slide } from "svelte/transition";
+  import { themeChange } from "theme-change";
   import "../app.css";
   import MarkdownLink from "./MarkdownLink.svelte";
   import TestimonialList from "./TestimonialList.svelte";
-  import { onMount } from "svelte";
-  import { themeChange } from "theme-change";
-  import "iconify-icon";
 
   onMount(() => {
     themeChange(false);
@@ -139,11 +139,11 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   ];
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 
 <main
-  class="prose prose-sm prose-neutral mx-auto max-w-screen-md p-8 dark:prose-invert"
+  class="prose prose-sm prose-neutral dark:prose-invert mx-auto max-w-3xl p-8"
 >
   <div class="flex justify-between gap-4">
     <div>
@@ -156,18 +156,22 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
         class="flex rounded-full border border-neutral-200 dark:border-neutral-700"
       >
         <button
-          class="btn !rounded-full !border-none"
+          class="btn rounded-full! border-none!"
           data-set-theme="light"
           data-act-class="btn-active"
+          aria-label="Light Mode"
         >
-          <iconify-icon icon="material-symbols:sunny-outline-rounded" />
+          <iconify-icon icon="material-symbols:sunny-outline-rounded"
+          ></iconify-icon>
         </button>
         <button
-          class="btn !rounded-full !border-none"
+          class="btn rounded-full! border-none!"
           data-set-theme="dark"
           data-act-class="btn-active"
+          aria-label="Dark Mode"
         >
-          <iconify-icon icon="material-symbols:nightlight-outline-rounded" />
+          <iconify-icon icon="material-symbols:nightlight-outline-rounded"
+          ></iconify-icon>
         </button>
       </div>
 
@@ -175,10 +179,8 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
         >so svelte doesn't remove btn-active css</button
       >
       <a class="btn" target="_blank" href="/Yashash-Pugalia_Resume-CV.pdf">
-        <iconify-icon
-          icon="material-symbols:download-rounded"
-          class="text-lg"
-        />
+        <iconify-icon icon="material-symbols:download-rounded" class="text-lg"
+        ></iconify-icon>
         Download
       </a>
     </div>
@@ -212,7 +214,7 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
           target="_blank"
           class="project-image [--mousePos:0]"
           style:--previewImage="url('{p.previewImage}')"
-          on:mousemove={(e) => {
+          onmousemove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             e.currentTarget.style.setProperty("--mousePos", `${x}px`);
@@ -262,21 +264,29 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   </div>
 </main>
 
+<!-- Kept if we want accordian style back -->
 <!-- .custom-hover-effect {
-    @apply relative;
-  }
-  .custom-hover-effect::before {
-    @apply pointer-events-none absolute -inset-x-4 -inset-y-1 -z-10 mt-4 rounded bg-neutral-100 opacity-0 transition-all [content:''] dark:bg-neutral-800;
-  }
-  .custom-hover-effect:hover::before {
-    @apply opacity-100;
-  } -->
+  @apply relative;
+}
+.custom-hover-effect::before {
+  @apply pointer-events-none absolute -inset-x-4 -inset-y-1 -z-10 mt-4 rounded bg-neutral-100 opacity-0 transition-all [content:''] dark:bg-neutral-800;
+}
+.custom-hover-effect:hover::before {
+  @apply opacity-100;
+} -->
+
 <style lang="postcss">
+  @reference "../app.css";
+
   .project-image {
     @apply relative;
   }
+
   .project-image::after {
-    @apply pointer-events-none absolute left-1/2 z-[1] h-40 w-[272px] -translate-y-full translate-x-[calc(-50%+var(--mousePos))] scale-50 rounded border-8 border-neutral-100 bg-contain bg-no-repeat opacity-0 transition-all duration-100 [background-image:var(--previewImage)] [content:''] dark:border-neutral-800;
+    @apply pointer-events-none absolute left-1/2 z-1 h-40 w-[272px] -translate-y-full translate-x-[calc(-50%+var(--mousePos))] scale-50 rounded border-8 border-neutral-100 [background-image:var(--previewImage)] bg-contain bg-no-repeat opacity-0 transition-all duration-100 [content:''];
+  }
+  :global([data-theme="dark"]) .project-image::after {
+    @apply border-neutral-800;
   }
   .project-image:hover::after {
     @apply -translate-y-[calc(100%+1.5rem)] scale-100 opacity-100;
