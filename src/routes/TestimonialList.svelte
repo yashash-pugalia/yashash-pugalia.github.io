@@ -20,7 +20,8 @@
           href={t.link}
           target="_blank"
           class="absolute inset-0 rounded rounded-l-none border border-transparent transition hover:border-neutral-200 hover:dark:border-neutral-700"
-        />
+          aria-label="View Testimonial"
+        ></a>
       {/if}
 
       <p>{@html t.quote}</p>

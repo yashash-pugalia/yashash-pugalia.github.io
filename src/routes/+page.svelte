@@ -159,15 +159,19 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
           class="btn !rounded-full !border-none"
           data-set-theme="light"
           data-act-class="btn-active"
+          aria-label="Light Mode"
         >
-          <iconify-icon icon="material-symbols:sunny-outline-rounded" />
+          <iconify-icon icon="material-symbols:sunny-outline-rounded"
+          ></iconify-icon>
         </button>
         <button
           class="btn !rounded-full !border-none"
           data-set-theme="dark"
           data-act-class="btn-active"
+          aria-label="Dark Mode"
         >
-          <iconify-icon icon="material-symbols:nightlight-outline-rounded" />
+          <iconify-icon icon="material-symbols:nightlight-outline-rounded"
+          ></iconify-icon>
         </button>
       </div>
 
@@ -175,10 +179,8 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
         >so svelte doesn't remove btn-active css</button
       >
       <a class="btn" target="_blank" href="/Yashash-Pugalia_Resume-CV.pdf">
-        <iconify-icon
-          icon="material-symbols:download-rounded"
-          class="text-lg"
-        />
+        <iconify-icon icon="material-symbols:download-rounded" class="text-lg"
+        ></iconify-icon>
         Download
       </a>
     </div>
