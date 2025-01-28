@@ -276,7 +276,7 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
 
 <!-- TODO: move this elsewhere given the :global changes -->
 <!-- https://svelte.dev/docs/svelte/v5-migration-guide#Other-breaking-changes-:is()-and-:where()-are-scoped -->
-<style lang="postcss">
+<!-- <style lang="postcss">
   .project-image :global {
     @apply relative;
   }
@@ -296,4 +296,4 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   .btn:hover :global {
     @apply bg-neutral-100 dark:bg-neutral-800;
   }
-</style>
+</style> -->
