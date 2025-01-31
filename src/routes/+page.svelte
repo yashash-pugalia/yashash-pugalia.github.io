@@ -1,16 +1,8 @@
 <script lang="ts">
-  import "iconify-icon";
-  import { onMount } from "svelte";
   import SvelteMarkdown from "svelte-markdown";
   import { slide } from "svelte/transition";
-  import { themeChange } from "theme-change";
-  import "../app.css";
   import MarkdownLink from "./MarkdownLink.svelte";
   import TestimonialList from "./TestimonialList.svelte";
-
-  onMount(() => {
-    themeChange(false);
-  });
 
   const work = [
     {
@@ -141,7 +133,6 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-
 <main
   class="prose prose-sm prose-neutral dark:prose-invert mx-auto max-w-3xl p-8"
 >
@@ -155,8 +146,18 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
       <div
         class="flex rounded-full border border-neutral-200 dark:border-neutral-700"
       >
+        <!-- TODO: Does not work -->
+        <!-- <button
+          class="btn btn-circle border-none!"
+          data-set-theme=""
+          data-act-class="btn-active"
+          aria-label="System"
+        >
+          <iconify-icon icon="material-symbols:devices-outline-rounded"
+          ></iconify-icon>
+        </button> -->
         <button
-          class="btn rounded-full! border-none!"
+          class="btn btn-circle border-none!"
           data-set-theme="light"
           data-act-class="btn-active"
           aria-label="Light Mode"
@@ -165,7 +166,7 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
           ></iconify-icon>
         </button>
         <button
-          class="btn rounded-full! border-none!"
+          class="btn btn-circle border-none!"
           data-set-theme="dark"
           data-act-class="btn-active"
           aria-label="Dark Mode"
@@ -190,7 +191,7 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   {#each work as w}
     <div class="flex justify-between gap-2">
       <!-- custom-hover-effect cursor-pointer -->
-      <!-- on:click={() => (w.collapsed = !w.collapsed)} -->
+      <!-- onclick={() => (w.collapsed = !w.collapsed)} -->
       <h3>
         <a href={w.link} target="_blank">{w.company}</a>
       </h3>
@@ -207,7 +208,7 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   {#each projects as p}
     <div class="flex justify-between gap-2">
       <!-- custom-hover-effect cursor-pointer -->
-      <!-- on:click={() => (p.collapsed = !p.collapsed)} -->
+      <!-- onclick={() => (p.collapsed = !p.collapsed)} -->
       <h3 class="space-x-2">
         <a
           href={p.link}
@@ -264,19 +265,19 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   </div>
 </main>
 
-<!-- Kept if we want accordian style back -->
-<!-- .custom-hover-effect {
-  @apply relative;
-}
-.custom-hover-effect::before {
-  @apply pointer-events-none absolute -inset-x-4 -inset-y-1 -z-10 mt-4 rounded bg-neutral-100 opacity-0 transition-all [content:''] dark:bg-neutral-800;
-}
-.custom-hover-effect:hover::before {
-  @apply opacity-100;
-} -->
-
 <style lang="postcss">
   @reference "../app.css";
+
+  /* Kept if we want accordian style back */
+  /* .custom-hover-effect {
+    @apply relative;
+  }
+  .custom-hover-effect::before {
+    @apply pointer-events-none absolute -inset-x-4 -inset-y-1 -z-10 mt-4 rounded bg-neutral-100 opacity-0 transition-all [content:''] dark:bg-neutral-800;
+  }
+  .custom-hover-effect:hover::before {
+    @apply opacity-100;
+  } */
 
   .project-image {
     @apply relative;
@@ -290,13 +291,5 @@ Additionally, I was the [lead front-end contributor](https://github.com/blueedge
   }
   .project-image:hover::after {
     @apply -translate-y-[calc(100%+1.5rem)] scale-100 opacity-100;
-  }
-
-  .btn {
-    @apply flex h-8 items-center justify-center gap-1 rounded border border-neutral-200 px-2 no-underline transition dark:border-neutral-700;
-  }
-  .btn-active,
-  .btn:hover {
-    @apply bg-neutral-100 dark:bg-neutral-800;
   }
 </style>
